@@ -1,6 +1,5 @@
 package de.bcxp.challenge;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,16 +9,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class AppTest {
 
-    private String successLabel = "not successful";
+    @Test
+    void testLeastTempSpread() {
 
-    @BeforeEach
-    void setUp() {
-        successLabel = "successful";
+        String filepath = "src\\main\\resources\\de\\bcxp\\challenge\\weather.csv";
+        String dayWithSmallestTempSpread = App.leastTempSpread(filepath);     // Your day analysis function call …
+
+
+        assertEquals("14", dayWithSmallestTempSpread, "Wrong day selected: Day" +dayWithSmallestTempSpread);
     }
 
     @Test
-    void aPointlessTest() {
-        assertEquals("successful", successLabel, "My expectations were not met");
+    void testHighestPopDensity() {
+        String filepath = "src\\main\\resources\\de\\bcxp\\challenge\\countries.csv";
+        String maxPopDensity = App.highestPopDensity(filepath); // Your population density analysis function call …
+
+
+        assertEquals("Malta", maxPopDensity, "Wrong country selected: " + maxPopDensity);
     }
 
+
 }
+
