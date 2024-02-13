@@ -48,12 +48,19 @@ public class Reader {
         return records;
     }
 
+    /**
+     * This function expects a string that can be converted to a float
+     * @param cell String represantation of a float
+     * @return The converted float
+     */
     public static float toFloat(String cell){
 
+        //If the cell is in format 123.456,78 convert it to 123456.78
         if (cell.indexOf('.') != -1 && cell.indexOf(',') != -1) {
             cell = cell.replace(".", "");
             cell = cell.replace(",", ".");
         }
+
 
         try {
             return Float.parseFloat(cell);
@@ -64,21 +71,37 @@ public class Reader {
 
     }
 
+
+    /**
+     * Setter for the delimiter variable
+     * @param delimiter The new delimiter value to set
+     */
     public void setDelimiter(String delimiter){
         this.delimiter = delimiter;
     }
 
 
+    /**
+     * Getter for the delimiter variable
+     * @return The current delimiter value
+     */
     public String getDelimiter(){
         return this.delimiter;
     }
 
 
+    /**
+     * Setter for the filepath variable
+     * @param delimiter The new filepath value to set
+     */
     public void setFilePath(String filePath){
         this.filePath = filePath;
     }
 
-
+    /**
+     * Getter for the filepath variable
+     * @return The current filepath value
+     */
     public String getFilePath(){
         return this.filePath;
     }
