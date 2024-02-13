@@ -16,15 +16,17 @@ public final class App {
      * @param filePath Path to the target CSV
      * @return The day with the lowest temperature spread
      */
-    public static String leastTempSpreadDay(String filePath) {
+    public static String leastTempSpread(String filePath) {
         Reader reader = new Reader(",", filePath);
         List<List<String>> data = reader.readCSV();
-
+        
+        int minTemptIndex = 2;
+        int maxTempIndex = 1;
 
         float minTemperatureSpread = Float.MAX_VALUE;
         String minTemperatureDay = "-1";
         for (int i = 1; i < data.size(); i++) {
-            float tempSpread = Reader.toFloat(data.get(i).get(1)) - Reader.toFloat(data.get(i).get(2));
+            float tempSpread = Reader.toFloat(data.get(i).get(maxTempIndex)) - Reader.toFloat(data.get(i).get(minTemptIndex));
             if (tempSpread<minTemperatureSpread) {
                 minTemperatureSpread = tempSpread;
                 minTemperatureDay = data.get(i).get(0);
@@ -42,14 +44,14 @@ public final class App {
     public static String highestPopDensity(String filePath) {
         Reader reader = new Reader(";", filePath);
         List<List<String>> data = reader.readCSV();
-
+   
+        int areaIndex = 4;
+        int popIndex = 3;
 
         float maxPopDensity = 0;
         String maxDensityCountry = "";
-
-
         for (int i = 1; i < data.size(); i++) {
-            float density = Reader.toFloat(data.get(i).get(3)) / Reader.toFloat(data.get(i).get(4));
+            float density = Reader.toFloat(data.get(i).get(popIndex)) / Reader.toFloat(data.get(i).get(areaIndex));
             if (density>maxPopDensity) {
                 maxPopDensity = density;
                 maxDensityCountry = data.get(i).get(0);
@@ -68,10 +70,12 @@ public final class App {
 
         // Your preparation code …
 
-        String dayWithSmallestTempSpread = leastTempSpreadDay("src\\main\\resources\\de\\bcxp\\challenge\\weather.csv");     // Your day analysis function call …
+        String filepath = "src\\main\\resources\\de\\bcxp\\challenge\\weather.csv";
+        String dayWithSmallestTempSpread = leastTempSpread(filepath);     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread: %s%n", dayWithSmallestTempSpread);
 
-        String countryWithHighestPopulationDensity = highestPopDensity("src\\main\\resources\\de\\bcxp\\challenge\\countries.csv"); // Your population density analysis function call …
-        System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+        filepath = "src\\main\\resources\\de\\bcxp\\challenge\\countries.csv";
+        String maxPopDensity = highestPopDensity(filepath); // Your population density analysis function call …
+        System.out.printf("Country with highest population density: %s%n", maxPopDensity);
     }
 }
