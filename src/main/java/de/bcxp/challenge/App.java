@@ -51,7 +51,13 @@ public final class App {
         float maxPopDensity = 0;
         String maxDensityCountry = "";
         for (int i = 1; i < data.size(); i++) {
-            float density = Reader.toFloat(data.get(i).get(popIndex)) / Reader.toFloat(data.get(i).get(areaIndex));
+            float density;
+            if (Reader.toFloat(data.get(i).get(areaIndex)) == 0) {
+                density = 0;
+            } else {
+                density = Reader.toFloat(data.get(i).get(popIndex)) / Reader.toFloat(data.get(i).get(areaIndex));
+            }
+            
             if (density>maxPopDensity) {
                 maxPopDensity = density;
                 maxDensityCountry = data.get(i).get(0);
