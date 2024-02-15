@@ -20,6 +20,10 @@ public final class App {
         Reader reader = new Reader(",", filePath);
         List<List<String>> data = reader.readCSV();
         
+        if (data.size()==0) {
+            return "No data to be processed.";
+        }
+
         int minTemptIndex = 2;
         int maxTempIndex = 1;
 
@@ -44,7 +48,11 @@ public final class App {
     public static String highestPopDensity(String filePath) {
         Reader reader = new Reader(";", filePath);
         List<List<String>> data = reader.readCSV();
-   
+        
+        if (data.size()==0) {
+            return "No data to be processed.";
+        }
+
         int areaIndex = 4;
         int popIndex = 3;
 
