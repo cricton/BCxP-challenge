@@ -13,7 +13,7 @@ class AppTest {
     void testLeastTempSpread() {
 
         String filepath = "src\\main\\resources\\de\\bcxp\\challenge\\weather.csv";
-        String dayWithSmallestTempSpread = App.leastTempSpread(filepath);     // Your day analysis function call …
+        String dayWithSmallestTempSpread = WeatherAnalysis.leastTempSpread(filepath);     // Your day analysis function call …
 
 
         assertEquals("14", dayWithSmallestTempSpread, "Wrong day selected: Day" +dayWithSmallestTempSpread);
@@ -22,7 +22,7 @@ class AppTest {
     @Test
     void testHighestPopDensity() {
         String filepath = "src\\main\\resources\\de\\bcxp\\challenge\\countries.csv";
-        String maxPopDensity = App.highestPopDensity(filepath); // Your population density analysis function call …
+        String maxPopDensity = CountryAnalysis.highestPopDensity(filepath); // Your population density analysis function call …
 
 
         assertEquals("Malta", maxPopDensity, "Wrong country selected: " + maxPopDensity);
